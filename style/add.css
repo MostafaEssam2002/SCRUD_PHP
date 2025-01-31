@@ -1,0 +1,125 @@
+.error-message {
+    color: #fa0808;  /* لون أحمر واضح */
+    font-size: 15px;  /* حجم خط مناسب */
+    font-weight: bold;  /* خط عريض */
+    background: rgba(244, 123, 123, 0.4);
+    padding: 5px 10px;  /* تباعد داخلي */
+    border-radius: 5px;  /* زوايا دائرية */
+    display: inline-block; /* حتى لا تمتد على كامل العرض */
+    margin-top: 5px;  /* تباعد من الأعلى */
+    margin-bottom: 1px;  
+}
+
+
+body {
+background-image: url('../images/back.webp'); /* Adjust the path */
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+font-family: Arial, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+
+
+.form-container {
+background: rgba(255, 255, 255, 0.1);
+padding: 20px;
+border-radius: 10px;
+width: 400px;
+box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+backdrop-filter: blur(10px);
+padding: 50px;
+}
+
+h2 {
+text-align: center;
+font-family: 'Georgia', serif;
+}
+
+label {
+display: block;
+margin-top: 10px;
+font-size: 14px;
+font-weight: bold;
+}
+
+input[type="text"], 
+input[type="password"],
+input[type="email"] {
+width: 100%;
+padding: 8px;
+margin-top: 5px;
+border: none;
+border-radius: 5px;
+background: rgba(255, 255, 255, 0.2);
+color: white;
+}
+
+input::placeholder {
+color: white;
+opacity: 0.8;
+}
+
+.checkbox-group, .radio-group {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-top: 10px;
+}
+
+.submit-btn {
+width: 100%;
+padding: 10px;
+margin-top: 15px;
+background: #ff007f;
+color: white;
+font-size: 16px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.submit-btn:hover {
+background: #ff3399;
+}
+input[type="checkbox"], input[type="radio"] {
+margin: 0;
+transform: scale(1.2);
+}
+label {
+display: block;
+margin: 10px 0 5px;
+font-weight: bold;
+}
+/* تنسيق زر الرفع */
+input[type="file"] {
+width: 100%;
+padding: 10px;
+border: none;
+border-radius: 5px;
+background: rgba(255, 255, 255, 0.2);
+color: white;
+cursor: pointer;
+transition: 0.3s;
+font-size: 14px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+background: #ff007f;
+color: white;
+border: none;
+padding: 8px 15px;
+border-radius: 5px;
+cursor: pointer;
+transition: 0.3s;
+font-weight: bold;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+background: #ff3399;
+}
