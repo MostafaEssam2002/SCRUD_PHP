@@ -35,3 +35,8 @@ This project is a simple User Management System built using PHP and MySQL. It al
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/your-username/user-management-system.git
+  
+2. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/user-management-system.git
+  
