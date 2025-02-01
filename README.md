@@ -47,5 +47,5 @@ This project is a simple User Management System built using PHP and MySQL. It al
     admin TINYINT(1) DEFAULT 0,
     gender ENUM('male', 'female') NOT NULL,
     image_path VARCHAR(255)
-);
+    );
   
