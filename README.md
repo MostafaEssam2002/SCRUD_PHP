@@ -36,8 +36,8 @@ This project is a simple User Management System built using PHP and MySQL. It al
    ```bash
    git clone https://github.com/your-username/user-management-system.git
   
-2. **Set up the database:**:
-   Import the user table structure into your MySQL database. You can use the following SQL command:
+2. **Set up the database:**
+       Import the user table structure into your MySQL database. You can use the following SQL command:
    ```sql
    CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
