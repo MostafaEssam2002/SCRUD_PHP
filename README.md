@@ -48,4 +48,7 @@ This project is a simple User Management System built using PHP and MySQL. It al
     gender ENUM('male', 'female') NOT NULL,
     image_path VARCHAR(255)
     );
-  
+   
+2. **Set up the database:**
+    Update the database connection details in each PHP file (add.php, delete.php, edit.php, list.php, login.php) to match your MySQL server credentials. 
+   
