@@ -27,6 +27,7 @@ This project is a simple User Management System built using PHP and MySQL. It al
 - **edit.php**: Handles editing existing user details.
 - **list.php**: Displays a list of all users and allows searching.
 - **login.php**: Handles user authentication and login.
+- **user.php**: Show user profile page.
 - **style/**: Contains CSS files for styling the application.
 
 ## Installation
