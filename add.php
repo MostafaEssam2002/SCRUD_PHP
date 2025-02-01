@@ -1,7 +1,6 @@
 <?php
 $errors = array();
-$mysql_error = ""; // متغير لتخزين خطأ MySQL
-
+$mysql_error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST["name"]) || empty($_POST["name"])) {
         $errors["name"] = "name";
@@ -15,47 +14,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST["gender"])) {
         $errors["gender"] = "gender";
     }
-
     if (empty($errors)) {
         $conn = mysqli_connect('localhost', 'root', '', 'test');
         if (!$conn) {
             $mysql_error = "Database Connection Error: " . mysqli_connect_error();
         } else {
             try {
-                $name = mysqli_real_escape_string($conn, $_POST["name"]);
-                $email = mysqli_real_escape_string($conn, $_POST["email"]);
+                $name = mysqli_real_escape_string($conn, addslashes(trim($_POST["name"])));
+                // $pattern="/^[a-z0-9-]+[_a-z0-9-]*[a-z0-9-]+@[a-z0-9]+\.([a-z]{2,4})$/";
+                $email = mysqli_real_escape_string($conn, addslashes(trim($_POST["email"])));
                 $password = sha1($_POST["password"]);
                 $admin = isset($_POST["admin"]) ? 1 : 0;
                 $gender = isset($_POST["gender"]) ? $_POST["gender"] : "";
-                
-                // تحديد مسار مجلد الرفع داخل htdocs
                 $uploads_dir = $_SERVER["DOCUMENT_ROOT"] . "/scrud/uploads";
-                $image_path = ""; // المسار الذي سيتم تخزينه في قاعدة البيانات
-                
+                $image_path = "";
                 if (isset($_FILES["avatar"]) && $_FILES["avatar"]['error'] == UPLOAD_ERR_OK) {
                     $tmp_name = $_FILES["avatar"]["tmp_name"];
                     $extension = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
-                    
-                    // التحقق من أن الملف صورة فقط
                     $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
                     if (!in_array(strtolower($extension), $allowed_extensions)) {
                         throw new Exception("❌ Invalid image format. Allowed formats: JPG, JPEG, PNG, GIF.");
                     }
-
-                    // إنشاء اسم جديد للصورة باستخدام التاريخ والوقت
                     $avatar = date("Ymd_His") . "." . $extension;
                     $destination = $uploads_dir . "/" . $avatar;
-
-                    // نقل الصورة إلى المجلد
                     if (move_uploaded_file($tmp_name, $destination)) {
-                        $image_path = "/scrud/uploads/" . $avatar; // تخزين المسار النسبي
+                        $image_path = "/scrud/uploads/" . $avatar;
                     } else {
                         throw new Exception("❌ Error uploading image.");
                     }
                 }
-
-                $query = "INSERT INTO user (`name`, `email`, `password`, `admin`, `gender`, `image_path`) 
-                          VALUES ('$name', '$email', '$password', '$admin', '$gender', '$image_path');";
+                $query = "INSERT INTO user (`name`, `email`, `password`, `admin`, `gender`, `image_path`) VALUES ('$name', '$email', '$password', '$admin', '$gender', '$image_path');";
                 
                 if (!mysqli_query($conn, $query)) {
                     throw new Exception(mysqli_error($conn));
@@ -111,7 +99,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="female">Female</label>
                 <?php if (!empty($errors["gender"])) echo '<div class="error-message">Choose a gender</div>'; ?>
             </div>
-
             <input type="submit" value="Submit" class="submit-btn">
         </form>
     </div>

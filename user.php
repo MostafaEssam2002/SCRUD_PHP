@@ -1,97 +1,26 @@
 <?php 
-if (isset($_GET['id']) && is_numeric($_GET['id'])){
-    $conn=mysqli_connect('localhost','root','','test');
-    if(!$conn){
-        echo mysqli_connect_error();
-        exit();
-    }
-    $sql="select * from user where id = ".$_GET['id'];
-    $result=mysqli_query($conn,$sql);
-    $data=mysqli_fetch_assoc($result);
-    $name=$data["name"];
-    $image_path=$data["image_path"];
-    $gender=$data["gender"];
+session_start();
+if(isset($_SESSION['id'])){
+    $id = $_SESSION['id'];
+    $name= $_SESSION['name'];
+    $email= $_SESSION['email'];
+    $name=$_SESSION["name"];
+    $image_path=$_SESSION["image_path"];
+    $gender=$_SESSION["gender"];
 }
 else{
-    header('Location:list.php');
+    header("Location:login.php");
+    echo "no session found";
     exit();
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frontend Developer Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background-color: #0d0d19;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #111;
-        }
-        .logo {
-            color: white;
-            font-weight: bold;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        .language-switch {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-        .hero {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 100px;
-        }
-        .hero-text {
-            max-width: 500px;
-        }
-        .hero-text h1 {
-            font-size: 48px;
-            background: linear-gradient(to right, #ff007f, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .blue {
-            color: #3b82f6;
-        }
-        .cta {
-            background: linear-gradient(to right, #3b82f6, #ff007f);
-            padding: 10px 20px;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .hero-image img {
-            max-width: 400px;
-            border-radius: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style/user.css">
 </head>
 <body>
     <header>
@@ -103,7 +32,7 @@ else{
                 <li><a href="#portfolio">PORTFOLIO</a></li>
                 <li><a href="#contact">CONTACT</a></li>
             </ul>
-            <button class="language-switch">ENG 🌐</button>
+            <button class="language-switch"><a href="logout.php">Logout</a></button>
         </nav>
     </header>
     <section class="hero">

@@ -42,8 +42,8 @@ $result=mysqli_query($conn,$sql);
             <?php while($row=mysqli_fetch_assoc($result)) {?>
             <tr>
                 <td><?= $row['id']?></td>
-                <td><?= $row['name']?></td>
-                <td><?= $row['email']?></td>
+                <td><?= stripslashes($row['name'])?></td>
+                <td><?= stripslashes($row['email'])?></td>
                 <td><?= $row['gender']?></td>
                 <td><?= $row['admin']? "Yes":"no" ?></td>
                 <td><img src="<?= !empty($row['image_path']) ? htmlspecialchars($row['image_path']) : 'default.png' ?>" alt="User Image" width="100" height="100"></td>
